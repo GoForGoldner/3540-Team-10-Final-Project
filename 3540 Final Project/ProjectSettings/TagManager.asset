@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 3
   tags:
   - Spawn
+  - Bullet
+  - Enemy
+  - FxTemporaire
+  - Fire
+  - Level Manager
   layers:
   - Default
   - TransparentFX

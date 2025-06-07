@@ -2,8 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
 
-public class SceneSwitcher : MonoBehaviour
-{
+public class SceneSwitcher : MonoBehaviour {
     [SerializeField] private int scene1BuildIndex, scene2BuildIndex;
 
     private bool isScene1Active = true;
@@ -11,13 +10,20 @@ public class SceneSwitcher : MonoBehaviour
     private bool isSwitching = false;
     private Material scene1Skybox, scene2Skybox;
 
+    private void Awake() {
+       if (scene1BuildIndex == scene2BuildIndex) {
+            Debug.LogWarning("Disabled scene switcher because the scene's build index for a and b are the same. Switch one of them.");
+            gameObject.SetActive(false);
+       }
+    }
+
     private void Start() {
         // Load both scenes
         StartCoroutine(LoadBothScenes());
     }
 
     private void Update() {
-        if (Input.GetMouseButtonDown(0) && !isSwitching && scene1.isLoaded && scene2.isLoaded) {
+        if (Input.GetKeyDown("q") && !isSwitching && scene1.isLoaded && scene2.isLoaded) {
             SwitchActiveScene();
         }
     }
